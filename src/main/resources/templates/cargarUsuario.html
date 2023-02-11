@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org>
+<head>
+<meta charset="ISO-8859-1">
+<title>Agregar Usuario</title>
+<link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="container">
+
+		<div class="modal-dialog text-center">
+			<div class="col-sm-8 main-section-xd">
+				<div class="modal-content">
+					<h4>Registro de Usuario</h4>
+					<form class="form" role="form" autocomplete="off" th:object="${usuario}"
+						th:action="${editMode}? @{/editarUsuario} : @{/guardarUsuario}" method="post">
+						<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{password}">
+						<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{dni}">
+						<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{tipo}">
+
+
+
+
+						<div class="form-group ">
+							<label for="dni" class="form-label" th:if="${editMode==false}">DNI</label>
+							<input type="number" class="form-control" id="dni" th:field="*{dni}"
+								th:if="${editMode==false}" placeholder="Ingrese DNI" required>
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">
+							</div>
+						</div>
+						
+						<div class="form-group">
+
+							<label for="nombre" class="form-label">Nombre/s</label>
+							<input type="text" class="form-control" id="nombre" th:field="*{nombre}"
+								placeholder="Ingrese nombre completo">
+
+							<label for="apellido" class="form-label">Apellido/s</label>
+							<input type="text" class="form-control" id="apellido" th:field="*{apellido}"
+								placeholder="Ingrese apellido">
+								</div>
+								
+								<div class="form-group">
+							<label for="exampleInputPassword1" class="form-label"
+								th:if="${editMode==false}">Contraseña</label>
+							<input type="password" class="form-control" id="exampleInputPassword1"
+								th:field="*{password}" th:if="${editMode==false}" placeholder="Ingrese contraseña">
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}"></div>
+								</div>
+								
+						<div class="form-group">
+							<label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+							<input type="date" class="form-control" id="fechaNacimiento" th:field="*{fechaNacimiento}"
+								placeholder="Ingrese su fecha de nacimiento">
+						</div>
+						
+						<div class="form-check form-check-inline">
+  							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="alumno" value="alumno" th:if="${editMode==false}">
+ 							 <label class="form-check-label" for="alumno" th:if="${editMode==false}">Alumno</label>
+						</div>
+						
+						<div class="form-check form-check-inline">
+ 							 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="docente" value="docente" th:if="${editMode==false}">
+  							<label class="form-check-label" for="docente" th:if="$editMode==false}">Docente</label>
+						</div>
+						<div class="custom-control custom-radio">
+						  <input type="radio" id="estado" th:field="*{estado}" class="custom-control-input" value="true" th:if="${editMode==true}">
+						  <label class="custom-control-label" for="estado" th:if="${editMode==true}">Activar Estado</label>
+						</div>
+			
+						<div class="custom-control custom-radio">
+						  <input type="radio" id="estadoInactivo" th:field="*{estado}" class="custom-control-input" value="false" th:if="${editMode==true}">
+						  <label class="custom-control-label" for="estadoInactivo" th:if="${editMode==true}">Inactivo</label>
+						</div>
+
+						<button type="submit" class="btn btn-primary"><span
+								th:text="${editMode}? 'Modificar' : 'Registrarse' "></span> </button>
+						<a class="btn btn-light" th:href="@{/registroAdmin}">Volver</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+						
+
+</body>
+</html>
