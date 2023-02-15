@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.entidades.Usuario;
+
 import ar.edu.unju.edm.repository.UsuarioRepository;
 import ar.edu.unju.edm.service.UsuarioService;
 import ar.edu.unju.edm.until.ListaUsuario;
@@ -30,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		usuarioRepository.save(usuario);
 	}
-
+	
 	@Override
 	public List<Usuario> mostrarUsuarios() {
 		List<Usuario> aux = new ArrayList<>();

@@ -4,16 +4,17 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+//import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
-@Table(name = "usuarios")
 public class Usuario {
 
 	@NotNull
@@ -43,7 +44,7 @@ public class Usuario {
 	// constructor vacio
 
 	public Usuario() {
-		super();
+		
 	}
 
 	// getters and seters

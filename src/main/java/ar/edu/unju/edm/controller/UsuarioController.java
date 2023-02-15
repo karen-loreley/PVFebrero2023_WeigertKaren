@@ -24,16 +24,16 @@ public class UsuarioController {
 	private static final Log KAREN=LogFactory.getLog(UsuarioController.class);
 	
 	@Autowired
-	Usuario nuevoUsuario;
+	Usuario nuevousuario;
 	
 	@Autowired
 	UsuarioService usuarioServicio;
 
-	@GetMapping("/nuevoUsuario")
+	@GetMapping("/otroUsuario")
 	public ModelAndView addUser() {
 		KAREN.info("ingresando al metodo:Nuevo usuario");
 		ModelAndView modelView= new ModelAndView("cargarUsuario");
-		modelView.addObject("usuario", nuevoUsuario);
+		modelView.addObject("usuario", nuevousuario);
 		modelView.addObject("editMode", false);
 		return modelView;
 	}
@@ -59,7 +59,7 @@ public class UsuarioController {
 			return "cargarUsuario";
 		}
 		model.addAttribute("formUsuarioErrorMessage", "Usuario Guardado Correctamente");
-		model.addAttribute("usuario", nuevoUsuario);
+		model.addAttribute("usuario", nuevousuario);
 		model.addAttribute("editMode", false);
 		return "cargarUsuario";
 	}
@@ -67,7 +67,7 @@ public class UsuarioController {
 	
 		@GetMapping("/listadoUsuario")
 		public ModelAndView listUser() {
-			ModelAndView vista = new ModelAndView("getUsers");
+			ModelAndView vista = new ModelAndView("listarUsuarios");
 			vista.addObject("listaUsuario", usuarioServicio.mostrarUsuarios());
 			//KAREN.info("ingresando al metodo: listar usuario"+usuarioServicio.mostrarusuarios().get(0).getApellido());
 			return vista;
